@@ -1,17 +1,17 @@
-#include<iostram>
-
+#include<iostream>
+#include<string.h>
 void subsequence(std::string& str,int i,std::string output){
 	if(i == str.size()){
-		cout<<output<<"\n";
+		std::cout<<output<<"\n";
 		return;
-	}
-	f(str,i+1,output+str[i]);
-	f(str,i+1,output);
-	f
+	}	
+	subsequence(str,i+1,output+str[i]);	
+	subsequence(str,i+1,output);
+	
 }
 
 int main(){
 	std::string s = "abc";
-	f(s,0,"");
+	subsequence(s,0,"");
 	return 0;
 }
