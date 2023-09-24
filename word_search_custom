@@ -1,0 +1,36 @@
+class Solution {
+public:
+
+    bool backtracking(int i,int j,string word,int index,vector<vector<char>>& board){
+        if(index>=word.size()){
+            return true;
+        }
+        if(i<0 || i==board.size() || j<0 || j==board.size() || board[i][j] != word[index]){
+            return false;
+        }
+
+        board[i][j] = '#';
+        int rowOffset[] = {0,1,0,-1};
+        int colOffset[] = {1,0,-1,0};
+
+        for(int d=0;d<4;d++){
+            if(backtracking(i+rowOffset[d],j+colOffset[d],word,index+1,vector<vector<char>>& board)){
+                return true;
+            }
+        }
+
+        board[i][j] = word[index];
+        return false;    
+    }
+
+    bool exist(vector<vector<char>>& board, string word) {
+        for(int i=0;i<board.size();i++){
+            for(int j=0;j<board[0].size();j++){
+                 if(backtracking(i,j,word,0,vector<vector<char>>& board)){
+                     return true;
+                 }
+            }
+        }
+        return false;
+    }
+};
