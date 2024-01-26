@@ -9,7 +9,7 @@ void binary(int n) {
     while (n > 0) {
         string s1 = q.front();
         cout << s1 << " ";
-        q.push(s1 + "0");
+        q. (s1 + "0");
         q.push(s1 + "1");
         q.pop();
         n--;
