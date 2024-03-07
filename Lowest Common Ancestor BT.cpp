@@ -62,18 +62,23 @@ int main() {
     root->right->left = new TreeNode(40);
     root->right->left->right = new TreeNode(80);
     
-    int key = 80; // Example key
-    vector<int> v;
-    rec(root, key,v);
+    int key1 = 60;
+    int key2 = 50;
+    vector<int> v1;
+    vector<int> v2;
+    rec(root, key1, v1);
+    rec(root, key2, v2);
 
-    if(!v.empty()) {
-        cout << "Path to key " << key << ": ";
-        for(int& val : v) {
-            cout << val << " ";
-        }
-        cout << endl;
+    // Find the common ancestor by comparing the paths
+    int i = 0;
+    while(i < v1.size() && i < v2.size() && v1[i] == v2[i]) {
+        i++;
+    }
+    // Print the value of the last common ancestor
+    if(i > 0) {
+        cout << "Common Ancestor: " << v1[i-1] << endl;
     } else {
-        cout << "Key " << key << " not found in the tree." << endl;
+        cout << "No common ancestor found." << endl;
     }
 
     return 0;

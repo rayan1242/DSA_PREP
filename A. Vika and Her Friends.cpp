@@ -18,14 +18,14 @@ int main() {
 
         bool possible = true;
         for (auto& f : v) {
-            if ((x + y) % 2 != (f.first + f.second) % 2) { // Fixed logical condition
-                cout << "YES" << endl;
+            if ((x + y) % 2 == (f.first + f.second) % 2) { // Fixed logical condition
+                cout << "NO" << endl;
                 possible = false;
                 break; // Break out of the loop if a conflict is found
             }
         }
         if (possible) // Check if it's still possible after looping
-            cout << "NO" << endl;
+            cout << "YES" << endl;
     }
     return 0;
 }
