@@ -1,42 +1,73 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void solve(vector<int>& v,int n){
-	int m= *max_element(v.begin(),v.end());
-	if(m==0){
-		m=1;
+void solve(){
+	int n,f=1,mex=INT_MIN,flag=1;
+	cin>>n;
+	vector<int> a(n);
+	for(int i=0;i<n;i++){
+		cin>>a[i];
 	}
-	set<int> s(v.begin(),v.end());
-	int findMex=0;
-	bool found=false;
-	while (findMex <= m) {
-        if (s.find(findMex) == s.end()) {
-            break;
-        }
-        findMex++;
-    }
-    if (findMex > m) {
-        cout << -1 << "\n";
-        }else{
-		cout<<n<<"\n";
-		for(int i=1;i<=n;i++){
-			cout<<i<<i<<"\n";
-		}
-	}
+	set<int> t(a.begin(),a.end());
 	
-}	
-
-int main(){
-    int t;
-    cin>>t;
-    while(t--){
-        int n;
-        cin>>n;
-        vector<int> v(n);
-        for(int i=0;i<n;i++){
-        	cin>>v[i];
+	for(int i=0;i<n;i++){
+		if(a[i]!=i){
+			mex=i;
+			f=0;
+			break;
 		}
-        solve(v,n);
+	}
+	vector<int>v;
+	v.push_back(0);
+	if(f){
+		cout<<-1<<"\n";
+	}else{
+		int k=0;
+		for(int i=0;i<n;i++){
+			if(k<mex){
+				k++;
+				continue;
+			}
+			if(k==mex){
+				if(i!=0) 
+					v.push_back(i);
+				k=0;
+			}
+		}
+		if(v[0]==0 && v[v.size()-1]==n-1){
+				cout<<-1<<"\n";
+			}
+		else{
+			cout<<"\n";
+		for(int i=0;i<v.size()-1;i++){
+			cout<<v[i]+1<<" "<<v[i+1]<<"\n";
+		}
+		if(v[v.size()-1]<n && flag){
+			cout<<v[v.size()-1]+1<<" "<<n<<"\n";
+		}
+		cout<<"\n";
+		
+		
+		
+		
+		
+		
+		
+		
+			
+		}
+	}
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int T;
+    cin >> T;
+    while (T--) {
+    solve();
     }
+
+    return 0;
 }
 

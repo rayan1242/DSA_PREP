@@ -1,32 +1,33 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void solve(int n,string s){
-	int noL=0;
-	int noO=0;
-	for(int i=0;i<n;i++){
-		if(s[i]=='L') noL+=1;
-		if(s[i]=='O') noO+=1;
-	}	
-	if(S[0]=='L' || s[n-1]=='L' && noL!=2){
-		cout<<"1"<<endl;
-		return;
-	}
-	else if(S[0]=='O' || s[n-1]=='O' && noO!=2){
-		cout<<"1"<<endl;
-		return;
-	}
-	else{
-		cout<<"-1"<<endl;
-		return;
-	}
-}
 
 int main(){
-		int n;
-		cin>>n;
-		string s;
-		cin>>s;
-		solve(n,s);
+	int n;
+	cin>>n;
+	string s;
+	cin>>s;
+	int L=0,O=0;
+	for(int i=0;i<n;i++){
+		if(s[i]=='L') L++;
+		if(s[i]=='O') O++;
+	}
+	if(L==2 && s[0]=='L' && s[1]=='L'){
+		cout<<2<<"\n";
+	}
+	else if(O==2 && s[0]=='O' && s[1]=='O'){
+		cout<<2<<"\n";
+	}
+	else if(L!=2 && s[0]=='L' || s[s.size()-1]=='L'){
+		cout<<1<<"\n";
+	}
+	else if(O!=2 && s[0]=='O' || s[s.size()-1]=='O'){
+		cout<<1<<"\n";
+	}	
+	else if(s=="LOL" || s=="OLO" || s=="LOLO" || s=="OLOL"){
+		cout<<-1<<"\n";
+	}else{
+		cout<<1<<"\n";
+	}
 	return 0;
 }

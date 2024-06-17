@@ -1,35 +1,43 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+#include <cmath> // Include the <cmath> header for ceil() function
+#include<bits/stdc++.h>
 using namespace std;
-
-void solve(string s, int n) {
-    int f = 0;
-    int cnt = 0;
-    int cnt2 = 0;
-    int sum = 0;
-    for(int i = 0; i < n; i++) {
-        while(s[i] != 'A' && f == 0) {
-            f = 1;
-        }
-        while(s[i] != 'B' && s[i + 1] != 'A' && i + 1 < n) {
-            if(s[i] == 'A') cnt++;
-            if(s[i] == 'B') cnt2++;
-            i++;
-        }
-        sum += (cnt - 1) + cnt2;
-    }
-    cout << sum << endl;
+ 
+void solve(){
+	int n;
+	cin>>n;
+	string s;
+	cin>>s;
+	int i=0,j=n-1,cntA=0,cntB=0,totalA=0;
+	while(s[i]!='A') i++;
+	while(s[j]!='B') j--;
+	for(int k=j;k>=i;k--){
+		k--;
+		while(s[k]=='B' && k>=0){
+			spareB++;
+			k--;
+		}
+		while(s[k]=='A' && k>=0) {
+		cntA++;
+		k--;
+		}
+		
+	}
+	cout<<totalA+cntB<<"\n";	
 }
-
+ 
 int main() {
-    int t;
-    cin >> t;
-    while(t--) {
-        int n;
-        cin >> n;
-        string s;
-        cin >> s;
-        solve(s, n);
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    int T;
+    cin >> T;
+    
+    while (T--) {
+        solve();
     }
+    
     return 0;
 }
 
