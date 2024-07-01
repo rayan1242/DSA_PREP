@@ -1,49 +1,37 @@
 #include <iostream>
-#include <vector>
 #include <string>
-#include <algorithm>
-
+#include <cmath> // Include the <cmath> header for ceil() function
 using namespace std;
-
-// Function to find the length of the longest common subsequence
-int longestCommonSubsequence(const string &a, const string &b) {
-    int m = a.size();
-    int n = b.size();
-    vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
-    
-    for (int i = 1; i <= m; ++i) {
-        for (int j = 1; j <= n; ++j) {
-            if (a[i - 1] == b[j - 1]) {
-                dp[i][j] = dp[i - 1][j - 1] + 1;
-            } else {
-                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
-            }
-        }
-    }
-    return dp[m][n];
-}
-
+ 
 void solve() {
+    int cnt[26] = {0}; // Initialize the count array for alphabets
     string a, b;
-    cin >> a >> b;
-    
-    int lcsLength = longestCommonSubsequence(a, b);
-    int minLength = a.size() + b.size() - lcsLength;
-    
-    cout << minLength << "\n";
+    cin >> a;
+    cin >> b;
+ 	int m=b.size();
+    int n=a.size();
+    int ptr;
+    int ans=m+n;
+    for(int st=0;st<m;st++){
+    	ptr=st;
+    	for(int i=0;i<n;i++){
+    		if(ptr<m && b[ptr]==a[i]) ptr++;
+		}
+		ans=min(ans,m+n-ptr+st);
+	}
+	cout<<ans<<"\n";
 }
-
+ 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-
-    int t;
-    cin >> t;
-
-    while (t--) {
+ 
+    int T;
+    cin >> T;
+ 
+    while (T--) {
         solve();
     }
-
+ 
     return 0;
 }
-
